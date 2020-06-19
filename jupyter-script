@@ -21,5 +21,6 @@ done
 ename=$(zenity --entry --title "Choose environment" --text "Environment name" "${arr[@]}")
 ##
 
+nautilus $directory &
 conda activate $ename
 jupyter notebook --notebook-dir $directory
