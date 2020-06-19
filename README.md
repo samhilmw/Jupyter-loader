@@ -1,5 +1,7 @@
 Jupyter-loader
 ==============
+A shortcut using which you can load your conda environments in any directory with minimal GUI support
+
 
 ### Steps for Ubuntu
 
@@ -12,7 +14,7 @@ chown root:root jupyter-script
 cp jupyter-script /usr/bin/jupyter-script
 ```
 
-- Add shortcut key in Settings > Devices > Keyboard to execute following command
+- Add shortcut key in `Settings > Devices > Keyboard` to execute following command
 
 ```bash
 gnome-terminal -e /usr/bin/jupyter-script
