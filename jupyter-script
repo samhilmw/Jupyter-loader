@@ -1,26 +1,16 @@
 #!/bin/bash
+
+##
 directory=$(zenity --file-selection --directory)
 source /home/$USER/anaconda3/etc/profile.d/conda.sh
 
 ##
-result=$(conda env list)
-#Better regex needed
-pattern="\/"
-
 arr=()
-
-for word in $result
-do
-    [[ $word =~ $pattern ]]
-    if [[ ${BASH_REMATCH[0]} ]]
-    then
-        [[ ${word##*/} =~ "anaconda3" ]] && arr+=( base  ) || arr+=( ${word##*/})
-    fi
-done
-
+IFS=$'\n' read -r -d '' -a arr < <(conda env list | awk 'NR>=3' | awk '{print $1}' && printf '\0')
 ename=$(zenity --entry --title "Choose environment" --text "Environment name" "${arr[@]}")
-##
 
+##
 nautilus $directory &
 conda activate $ename
 jupyter notebook --notebook-dir $directory
+
