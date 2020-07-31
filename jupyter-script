@@ -2,7 +2,7 @@
 
 ##
 directory=$(zenity --file-selection --directory)
-source /home/$USER/anaconda3/etc/profile.d/conda.sh
+source "/home/$USER/anaconda3/etc/profile.d/conda.sh"
 
 ##
 arr=()
@@ -10,7 +10,6 @@ IFS=$'\n' read -r -d '' -a arr < <(conda env list | awk 'NR>=3' | awk '{print $1
 ename=$(zenity --entry --title "Choose environment" --text "Environment name" "${arr[@]}")
 
 ##
-nautilus $directory &
-conda activate $ename
-jupyter notebook --notebook-dir $directory
-
+nautilus "$directory" &
+conda activate "$ename"
+jupyter notebook --notebook-dir "$directory"
